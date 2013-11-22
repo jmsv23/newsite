@@ -23,12 +23,12 @@ def detail(request, poll_id):
 	#	raise Http404
 	#el siguiente codigo es un atajo para resumir el codigo anterior comentado
 	poll = get_object_or_404(Poll, pk=poll_id)
-	choice = Choice.objects.filter(poll=poll_id)
 	#atajo de codigo de rendereado para que quede en una sola linea
-	return render(request, 'polls/detail.jade', {'poll': poll, 'choice': choice})
+	return render(request, 'polls/detail.jade', {'poll': poll})
 
 def results(request, poll_id):
-    return HttpResponse("You're looking at the results of poll %s." % poll_id)
+	poll = get_object_or_404(Poll, pk=poll_id)
+	return render(request, 'polls/results.jade', {'poll': poll})
 
 def vote(request, poll_id):
     p = get_object_or_404(Poll, pk=poll_id)

@@ -1,0 +1,10 @@
+doctype 5
+html(lang="en")
+  head
+    title detail polls
+  body
+    h1 Results
+    ul
+      {% for choice in poll.choice_set.all %}
+      li{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}
+      {% endfor %}

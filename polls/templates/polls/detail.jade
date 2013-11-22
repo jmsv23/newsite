@@ -9,7 +9,7 @@ html(lang="en")
     {% endif %}
     form(action="{% url 'polls:vote' poll.id %}", method="post")
       {% csrf_token %}
-      {% for c in choice %}
+      {% for c in poll.choice_set.all %}
       input(type="radio", name="choice", id="choice{{ forloop.counter }}", value="{{ c.id }}")
       labe(for="choice{{ forloop.counter }}") {{ c.choice_text }}
       {% endfor %}
