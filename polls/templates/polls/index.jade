@@ -1,0 +1,12 @@
+doctype 5
+html(lang="en")
+  head
+    title Recent polls
+  body
+    h1 Polls recientes
+    #lista
+    ul
+      {% for poll in latest_poll_list %}
+      li 
+        a(href="{% url 'polls:detail' poll.id %}") {{ poll.question }}
+      {% endfor %}

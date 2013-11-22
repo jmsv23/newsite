@@ -1,0 +1,16 @@
+doctype 5
+html(lang="en")
+  head
+    title detail polls
+  body
+    h1 {{ poll.question }}
+    {% if error_message %}
+    p {{ error_message }}
+    {% endif %}
+    form(action="{% url 'polls:vote' poll.id %}", method="post")
+      {% csrf_token %}
+      {% for c in choice %}
+      input(type="radio", name="choice", id="choice{{ forloop.counter }}", value="{{ c.id }}")
+      labe(for="choice{{ forloop.counter }}") {{ c.choice_text }}
+      {% endfor %}
+      input(type="submit", value="vote")
